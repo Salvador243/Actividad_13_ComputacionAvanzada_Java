@@ -2,7 +2,9 @@ package com.example.demo.controllers;
 
 import java.util.ArrayList;
 
+import com.example.demo.models.ImcModel;
 import com.example.demo.models.UsuarioModel;
+import com.example.demo.servicies.ImcService;
 import com.example.demo.servicies.UsuarioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +14,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,6 +22,9 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
     @Autowired
     private UsuarioService servicio;
+
+    @Autowired
+    private ImcService servicioImc;
 
     @RequestMapping(value="/")
     public String login(HttpServletRequest request,
@@ -43,7 +46,14 @@ public class LoginController {
     }
 
     @RequestMapping("/calculo")
-    public String Calculo() {
+    public String Calculo(@ModelAttribute("ImcModel") ImcModel imcmodel, 
+                BindingResult error,
+                ModelMap modelmap,
+                HttpServletRequest request,
+                HttpSession session) {
+
+        ArrayList<ImcModel> listaImc = servicioImc.obtenerPorIdusuario((Long) session.getAttribute("id"));
+        session.setAttribute("listaImc", listaImc);
         return "Calculo";
     }
 
@@ -53,7 +63,6 @@ public class LoginController {
                            ModelMap modelmap,
                            HttpServletRequest request,
                            HttpSession session){
-        HttpSession sesion = request.getSession();
         if(resultado.hasErrors()) {
             session.setAttribute("error", 1);
             return "redirect:/registro";
@@ -65,7 +74,8 @@ public class LoginController {
         }
 
         servicio.guardarUsuario(usuario);
-        session.setAttribute("idUser", usuario.getId());
+        session.removeAttribute("error");
+        session.setAttribute("id", usuario.getId());
         return "redirect:/calculo";
     }
 
@@ -81,25 +91,40 @@ public class LoginController {
             return "redirect:/login";
         }
 
-        if (!session.isNew()) {
-            session.invalidate();
-        }
-        HttpSession sesion = request.getSession();
-
         String nombreusuario = usuario.getNombreusuario();
         String password = usuario.getPassword();
+        Long id_usuario = null;
 
         ArrayList<UsuarioModel> listado = servicio.obtenerPorNick(nombreusuario);
         String pass = "";
 
-        for (UsuarioModel usuarioModel : listado) pass = usuarioModel.getPassword();
-        if(password.equals(pass) && !password.equals("")) {
-            modelmap.addAttribute("id", usuario.getId());
-            sesion.setAttribute("id", usuario.getId());
-            return "Calculo";
+        for (UsuarioModel usuarioModel : listado) {
+            pass = usuarioModel.getPassword();
+            id_usuario = usuarioModel.getId();
         }
-        sesion.setAttribute("error", 1);
+        if(password.equals(pass) && !password.equals("")) {
+            session.setAttribute("id", id_usuario);
+            return "redirect:/calculo";
+        }
+        session.setAttribute("error", 1);
         return "redirect:/log";
+    }
+
+    @RequestMapping("/calcularImc")
+    public String doImc(@ModelAttribute("ImcModel") 
+                ImcModel imcmodel, 
+                BindingResult errores, 
+                ModelMap modelmap, 
+                HttpServletRequest request, 
+                HttpSession session){
+        if(errores.hasErrors()){
+            session.setAttribute("errorCalculo", 1);
+            return("redirect:/calculo");
+        }
+        imcmodel.setImc(imcmodel.getPeso(), imcmodel.getEstatura());
+        servicioImc.guardarImc(imcmodel);
+        session.removeAttribute("errorCalculo");
+        return("redirect:/calculo");
     }
 
 }
