@@ -42,39 +42,14 @@ public class UsuarioController {
         return this.usuarioService.obtenerPorNombre(nombre);
     }
 
-    @GetMapping("/apellido")
-    public ArrayList<UsuarioModel> obtenerUsuarioPorApellido(@RequestParam("apellido") String apellidos){
-        return this.usuarioService.obtenerPorApellido(apellidos);
-    }
-
-    @GetMapping("/imc")  
-    public ArrayList<UsuarioModel> obtenerUsuarioPorImc(@RequestParam("imc") Float imc){
-        return this.usuarioService.obtenerPorImc(imc);
-    }
-
     @GetMapping("/edad")  
-    public ArrayList<UsuarioModel> obtenerUsuarioPorEdad(@RequestParam("edad") Integer edad){
+    public ArrayList<UsuarioModel> obtenerUsuarioPorEdad(@RequestParam("edad") Float edad){
         return this.usuarioService.obtenerPorEdad(edad);
     }
 
     @GetMapping("/sexo")  
     public ArrayList<UsuarioModel> obtenerUsuarioPorSexo(@RequestParam("sexo") String sexo){
         return this.usuarioService.obtenerPorSexo(sexo);
-    }
-
-    @GetMapping("/estatura")  
-    public ArrayList<UsuarioModel> obtenerUsuarioPorEstatura(@RequestParam("estatura") Float estatura){
-        return this.usuarioService.obtenerPorEstatura(estatura);
-    }
-
-    @GetMapping("/peso")  
-    public ArrayList<UsuarioModel> obtenerUsuarioPorPeso(@RequestParam("peso") Float peso){
-        return this.usuarioService.obtenerPorPeso(peso);
-    }
-
-    @GetMapping("/fecha")  
-    public ArrayList<UsuarioModel> obtenerUsuarioPorFecha(@RequestParam("fecha") Float imc){
-        return this.usuarioService.obtenerPorImc(imc);
     }
 
     @DeleteMapping( path = "/{id}")

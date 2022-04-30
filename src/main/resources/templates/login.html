@@ -65,7 +65,7 @@
                 text-decoration: none;
             }
         }
-
+        
         @media (max-width: 600px) {
             .login-clean form {
                 max-width: 85vw;
@@ -129,35 +129,35 @@
 </head>
 
 <body style="background-color: #374e5e;">
-<div class="container container-md container-sm d-flex flex-column min-vh-100 justify-content-center align-items-center">
-    <div class="card col-md-3 col-sm-6 mb-5">
-        <div class="card-header">
-            Error
+    <div class="container container-md container-sm d-flex flex-column min-vh-100 justify-content-center align-items-center">
+        <div class="card col-md-3 col-sm-6 mb-5">
+            <div class="card-header">
+                Error
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>Datos incorrectos.</p>
+                </blockquote>
+            </div>
         </div>
-        <div class="card-body">
-            <blockquote class="blockquote mb-0">
-                <p>Datos incorrectos.</p>
-            </blockquote>
-        </div>
+        <section class="login-clean">
+            <form action="inicio" method="post">
+                <h2 class="visually-hidden">Login Form</h2>
+                <div class="illustration">
+                    <i class="icon ion-ios-navigate"></i>
+                </div>
+                <div class="mb-5">
+                    <input class="form-control" type="text" name="nombreusuario" placeholder="Nombre de Usuario">
+                </div>
+                <div class="mb-5">
+                    <input class="form-control" type="password" name="password" placeholder="Contrasena">
+                </div>
+                <div class="mb-5">
+                    <button class="btn btn-primary d-block w-100" type="submit">Iniciar Sesion</button>
+                </div>
+            </form>
+        </section>
     </div>
-    <section class="login-clean">
-        <form action="log" method="post">
-            <h2 class="visually-hidden">Login Form</h2>
-            <div class="illustration">
-                <i class="icon ion-ios-navigate"></i>
-            </div>
-            <div class="mb-5">
-                <input class="form-control" type="text" name="nombre_usuario" placeholder="Nombre de Usuario">
-            </div>
-            <div class="mb-5">
-                <input class="form-control" type="password" name="password" placeholder="Contrasena">
-            </div>
-            <div class="mb-5">
-                <button class="btn btn-primary d-block w-100" type="submit">Iniciar Sesion</button>
-            </div>
-        </form>
-    </section>
-</div>
 </body>
 
 </html>

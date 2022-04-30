@@ -8,38 +8,38 @@
 </head>
 
 <body style="background-color: #374e5e;">
-<div class="container container-md container-sm mt-5">
-    <div class="card">
-        <div class="card-header">
-            Error
+    <div class="container container-md container-sm mt-5">
+        <div class="card">
+            <div class="card-header">
+                Error
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>Este usuario ya esta registrado.</p>
+                </blockquote>
+            </div>
         </div>
-        <div class="card-body">
-            <blockquote class="blockquote mb-0">
-                <p>Este usuario ya esta registrado.</p>
-            </blockquote>
-        </div>
-    </div>
 
-    <div class="offset-xxl-3 col-xxl-6 offset-xxl-3 col-sm-12">
-        <form action="controller" method="post">
-            <label class="form-label text-light">Nombre Completo</label>
-            <input class="form-control" type="text" name="name">
-            <label class="form-label text-light">Nombre Usuario</label>
-            <input class="form-control" type="text" name="nickname">
-            <label class="form-label text-light">Edad</label>
-            <input class="form-control" type="number" name="edad">
-            <label class="form-label text-light">Sexo</label>
-            <select name="sexo" class="form-select" required>
+        <div class="offset-xxl-3 col-xxl-6 offset-xxl-3 col-sm-12">
+            <form action="guardar" method="post">
+                <label class="form-label text-light">Nombre Completo</label>
+                <input class="form-control" type="text" name="nombre">
+                <label class="form-label text-light">Nombre Usuario</label>
+                <input class="form-control" type="text" name="nombreusuario">
+                <label class="form-label text-light">Edad</label>
+                <input class="form-control" type="number" name="edad">
+                <label class="form-label text-light">Sexo</label>
+                <select name="sexo" class="form-select" required>
                 <option value="">Vacio</option>
                 <option value="hombre">Hombre</option>
                 <option value="mujer">Mujer</option>
             </select>
-            <label class="form-label text-light">Contrasena</label>
-            <input class="form-control" type="password" name="contrasena">
-            <button type="submit" class="btn btn-light mt-5 mt-sm-2">Registarse</button>
-        </form>
+                <label class="form-label text-light">Contrasena</label>
+                <input class="form-control" type="password" name="password">
+                <button type="submit" class="btn btn-light mt-5 mt-sm-2">Registarse</button>
+            </form>
+        </div>
     </div>
-</div>
 </body>
 
 </html>

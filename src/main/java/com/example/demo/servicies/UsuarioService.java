@@ -31,11 +31,8 @@ public class UsuarioService {
         return usuarioRepository.findByNombre(nombre);
     }
 
-    public ArrayList<UsuarioModel> obtenerPorApellido(String apellido) {
-        return usuarioRepository.findByApellido(apellido);
-    }
 
-    public ArrayList<UsuarioModel>  obtenerPorEdad(Integer edad) {
+    public ArrayList<UsuarioModel>  obtenerPorEdad(Float edad) {
         return usuarioRepository.findByEdad(edad);
     }
 
@@ -43,22 +40,13 @@ public class UsuarioService {
         return usuarioRepository.findBySexo(sexo);
     }
 
-    public ArrayList<UsuarioModel>  obtenerPorEstatura(Float estatura) {
-        return usuarioRepository.findByEstatura(estatura);
+    public ArrayList<UsuarioModel>  obtenerPorPassword(String password) {
+        return usuarioRepository.findByPassword(password);
     }
 
-    public ArrayList<UsuarioModel>  obtenerPorPeso(Float peso) {
-        return usuarioRepository.findByPeso(peso);
+    public ArrayList<UsuarioModel>  obtenerPorNick(String nombreusuario) {
+        return usuarioRepository.findByNombreusuario(nombreusuario);
     }
-
-    public ArrayList<UsuarioModel>  obtenerPorImc(Float imc) {
-        return usuarioRepository.findByImc(imc);
-    }
-
-    public ArrayList<UsuarioModel>  obtenerPorFecha(String fecha) {
-        return usuarioRepository.findByFecha(fecha);
-    }
-
 
     public boolean eliminarUsuario(Long id) {
         try{
