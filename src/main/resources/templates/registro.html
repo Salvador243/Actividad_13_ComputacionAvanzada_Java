@@ -9,7 +9,7 @@
 
 <body style="background-color: #374e5e;">
     <div class="container container-md container-sm mt-5">
-        <div class="card">
+        <div class="card" th:if="${session.error}">
             <div class="card-header">
                 Error
             </div>

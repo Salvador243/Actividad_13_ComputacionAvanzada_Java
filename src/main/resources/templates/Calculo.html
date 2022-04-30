@@ -9,7 +9,7 @@
 
 <body style="background-color: #374e5e;">
     <div class="container container-sm mt-md-5">
-        <a href="login" class="btn btn-light mb-3">Cerrar Sesion</a>
+        <a href="/" class="btn btn-light mb-3">Cerrar Sesion</a>
         <fieldset>
             <legend style="color: white; font-size: bold;">Bitacora</legend>
             <form action="auxiliar" method="post">
@@ -22,7 +22,7 @@
                         <label class="form-label text-light">Peso en kilogramos</label>
                         <input class="form-control" name="peso">
                     </div>
-                    <input type="hidden" th:value="${nick}" name="nick">
+                    <input type="hidden" th:value="${session.idUser}" name="id">
                     <input type="submit" value="Calcular IMC" class="mt-5 btn btn-danger offset-3 col-6 offset-3" />
                 </div>
             </form>

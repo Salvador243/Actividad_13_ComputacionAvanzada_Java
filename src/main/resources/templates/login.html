@@ -130,7 +130,7 @@
 
 <body style="background-color: #374e5e;">
     <div class="container container-md container-sm d-flex flex-column min-vh-100 justify-content-center align-items-center">
-        <div class="card col-md-3 col-sm-6 mb-5">
+        <div class="card col-md-3 col-sm-6 mb-5" th:if="${session.error}">
             <div class="card-header">
                 Error
             </div>
