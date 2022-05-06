@@ -41,6 +41,7 @@
                         <tr class="table-light">
                             <th scope="col">Estatura</th>
                             <th scope="col">Peso</th>
+                            <th scope="col">I.M.C</th>
                             <th scope="col">Fecha</th>
                         </tr>
                     </thead>
@@ -51,6 +52,7 @@
                         <tr th:each="item : ${session.listaImc}">
                             <td><span style="color: azure;" th:text="${item.estatura}"></span></td>
                             <td><span style="color: azure;" th:text="${item.peso}"></span></td>
+                            <td><span style="color: azure;" th:text="${item.imc}"></span></td>
                             <td><span style="color: azure;" th:text="${item.fecha}"></span></td>
                         </tr>
                     </tbody>

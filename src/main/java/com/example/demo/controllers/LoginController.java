@@ -64,17 +64,17 @@ public class LoginController {
                            HttpServletRequest request,
                            HttpSession session){
         if(resultado.hasErrors()) {
-            session.setAttribute("error", 1);
+            session.setAttribute("errorRegistto", 1);
             return "redirect:/registro";
         }
         ArrayList<UsuarioModel> isExiste = servicio.obtenerPorNick(usuario.getNombreusuario());
         if(!isExiste.isEmpty()){
-            session.setAttribute("error", 1);
+            session.setAttribute("errorRegistto", 1);
             return "redirect:/registro";
         }
 
         servicio.guardarUsuario(usuario);
-        session.removeAttribute("error");
+        session.removeAttribute("errorRegistto");
         session.setAttribute("id", usuario.getId());
         return "redirect:/calculo";
     }
